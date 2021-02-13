@@ -37,6 +37,10 @@ function mine()
   turtle.dig()
 end
 
+function sendError(error)
+  print(error)
+end
+
 function checkInventoryCorrect()
   local slotMiningWell = 13
   local slotFluxPoint = 14
@@ -45,23 +49,23 @@ function checkInventoryCorrect()
   
   
   local _, slotMiningWellName = turtle.getItemDetail(slotMiningWell)
-  if slotMiningWellName != "quarryplus:miningwellplus" then
+  if slotMiningWellName ~= "quarryplus:miningwellplus" then
     print("Mining Well not in place. Sending Alert to master Error Server")
 	sendError("Mining Well")
   end
   local _, slotFluxPointName = turtle.getItemDetail(slotFluxPoint)
-  if slotFluxPointName != "fluxnetworks:flux_point" then
+  if slotFluxPointName ~= "fluxnetworks:flux_point" then
     print("Flux Point not in place. Sending Alert to master Error Server")
 	sendError("Flux Point")
   end
   local _, slotFuelChestName = turtle.getItemDetail(slotFuelChest)
-  if slotFuelChestName != "enderstorage:ender_chest" then
+  if slotFuelChestName ~= "enderstorage:ender_chest" then
     print("Fuel Chest not in place. Sending Alert to master Error Server")
 	sendError("Fuel Chest")
   end
   local _, slotEmptyChestName = turtle.getItemDetail(slotEmptyChest)
-  if slotEmptyChestName != "quarryplus:miningwellplus" then
-    print("Mining Well not in place. Sending Alert to master Error Server")
+  if slotEmptyChestName ~= "quarryplus:miningwellplus" then
+    print("Empty Chest not in place. Sending Alert to master Error Server")
 	sendError("Empty Chest")
   end
   
