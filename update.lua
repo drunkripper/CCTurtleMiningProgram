@@ -1,1 +1,2 @@
-local test = false
+shell.run("wget", "https://raw.githubusercontent.com/drunkripper/CCTurtleMiningProgram/main/mine.lua", "mine.lua")
+shell.run("mine")
