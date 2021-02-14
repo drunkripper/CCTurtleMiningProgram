@@ -2,7 +2,6 @@ local slotMiningWell = 13
 local slotFluxPoint = 14
 local slotFuelChest = 15
 local slotEmptyChest = 16
-local waitTime = 12
 
 local modem = peripheral.wrap("left")
 
@@ -29,7 +28,7 @@ function mine()
   turtle.place()
   turtle.select(slotFluxPoint)
   turtle.placeDown()
-  sleep(waitTime)
+  sleep(15)
   turtle.digDown()
   turtle.select(slotEmptyChest)
   turtle.dig()
@@ -38,52 +37,13 @@ function mine()
   turtle.dig()
 end
 
-function sendError(errorMessage)
-  print(errorMessage)
-  modem.open(4)
-  modem.transmit(4, 4, "Miner: " .. os.getComputerID() .. " is missing a " .. errorMessage)
-end
-
-function checkInventoryCorrect()
-  local result = true
-
-  print("Checking Inventory Setup")
-  local _, slotMiningWellName = turtle.getItemDetail(slotMiningWell)
-  if slotMiningWellName ~= "quarryplus:miningwellplus" then
-	sendError("Mining Well")
-    result = false
-  end
-  local _, slotFluxPointName = turtle.getItemDetail(slotFluxPoint)
-  if slotFluxPointName ~= "fluxnetworks:flux_point" then
-	sendError("Flux Point")
-    result = false
-  end
-  local _, slotFuelChestName = turtle.getItemDetail(slotFuelChest)
-  if slotFuelChestName ~= "enderstorage:ender_chest" then
-	sendError("Fuel Chest")
-    result = false
-  end
-  local _, slotEmptyChestName = turtle.getItemDetail(slotEmptyChest)
-  if slotEmptyChestName ~= "quarryplus:miningwellplus" then
-	sendError("Empty Chest")
-	result = false
-  end
-  
-  return result
-  
-end
-
 modem.open(2)
---checkInventoryCorrect()
 while true do
   refuel()
   local event_type, side, recievedChannel, replyChannel, message, distance = os.pullEvent("modem_message")
   if message == "advance" then
     turtle.forward()  
     mine()
-  end
-  if message == "update" then
-    os.reboot()
   end
   if message == "setupMiningWell" then
     if turtle.getItemCount(slotMiningWell) == 0 then
