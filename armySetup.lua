@@ -1,3 +1,5 @@
+term.clear()
+term.setCursorPos(1, 1)
 print("Hello, Welcome to CCMiningProgram setup. Created by TheFakeJaneDoe. Please put the enderchest you wish to use for setup below")
 print("Press of the following keys:")
 print("f" .. ":for the Fuel Chest")
@@ -6,7 +8,7 @@ print("f" .. ": For the Fuel Chest")
 print("p" .. ": For the Flux Point")
 print("m" .. ": For the Mining Well")
 print("u" .. ": To Update All The Miners And This Machine")
-print("r" .. ": To Quit This Program and Run Army Control")
+print("r" .. ": To Run Army Control")
 print("e" .. ": To Quit This Program")
 print("t" .. ": Test one Advance")
 
@@ -33,7 +35,8 @@ while true do
 	  modem.transmit(2, 2, "setupEmptyChest")
 	end
     if key == keys.r then
-	  os.clear()
+	  term.clear()
+	  term.setCursorPos(1, 1)
 	  print("Running Army Control")
 	  shell.run("armyControl")
 	end
