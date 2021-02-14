@@ -2,6 +2,7 @@ local slotMiningWell = 13
 local slotFluxPoint = 14
 local slotFuelChest = 15
 local slotEmptyChest = 16
+local waitTime = 12
 
 local modem = peripheral.wrap("left")
 
@@ -28,7 +29,7 @@ function mine()
   turtle.place()
   turtle.select(slotFluxPoint)
   turtle.placeDown()
-  sleep(15)
+  sleep(waitTime)
   turtle.digDown()
   turtle.select(slotEmptyChest)
   turtle.dig()
