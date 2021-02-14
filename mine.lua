@@ -82,6 +82,9 @@ while true do
     turtle.forward()  
     mine()
   end
+  if message == "update" then
+    os.reboot()
+  end
   if message == "setupMiningWell" then
     if turtle.getItemCount(slotMiningWell) == 0 then
 	  turtle.select(slotMiningWell)
